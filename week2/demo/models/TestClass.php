@@ -34,7 +34,12 @@ class TestClass {
     *    
     * @param {String} [$test]
     */   
+   
     public function setTest($test) {
+        if(!is_string($test))
+        {
+            throw new Exception('only string allowed for test');
+        }
         $this->test = $test;
     }
 
