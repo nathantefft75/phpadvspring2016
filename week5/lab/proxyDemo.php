@@ -32,6 +32,7 @@
         <br />
         <br />
         Data(optional):<br />   
+        
         corp <input type="text" name="corp" value="" />
         <br />
         email <input type="email" name="email" value="" />
@@ -61,6 +62,7 @@
                 var verb = verbfield.options[verbfield.selectedIndex].value;
                 var resource = document.querySelector('input[name="resource"]').value;
                 var data = {
+                    
                     'corp' : document.querySelector('input[name="corp"]').value,
                     'email' : document.querySelector('input[name="email"]').value,
                     'incorp_dt' : document.querySelector('input[name="incorp_dt"]').value,
@@ -77,7 +79,7 @@
 
                 xmlhttp.open(verb, url, true);
 
-                xmlhttp.onreadyphonechange = function() {
+                xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState === 4 ) {
 
                         console.log(xmlhttp.responseText);
