@@ -29,5 +29,6 @@ and open the template in the editor.
       
         <input type="submit" value="logout" class="btn btn-danger" />
         </form>
+        <a href="generatorView.php">Create New Meme</a> 
     </body>
 </html>
