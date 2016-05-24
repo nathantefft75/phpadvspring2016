@@ -91,7 +91,34 @@ class DBSpring extends DB {
     {
         
     }
-   
+       function allMeme()
+   {
+         $db = $this->getDb();
+        $stmt = $db->prepare("select * from photos");
+      
+       
+            if ($stmt->execute() && $stmt->rowCount() > 0) {
+                        $userInfo = $stmt->fetchall(PDO::FETCH_ASSOC);
+                }
+                return  $userInfo;
+   }
+   function randomMeme($randomImageID)
+   {
+         $db = $this->getDb();
+        $stmt = $db->prepare("select * from photos WHERE photo_id = :photo_id");
+        $bind = array(
+           
+             ":photo_id"=> $randomImageID
+          
+         
+                 );
+         $userInfo = array();
+            if ($stmt->execute($bind) && $stmt->rowCount() > 0) {
+                        $userInfo = $stmt->fetchall(PDO::FETCH_ASSOC);
+                }
+             
+                return  $userInfo;
+   }
     function delete($filename)
     {
               $db = $this->getDb();

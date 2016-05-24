@@ -39,7 +39,7 @@
         }?>
         <h2>Image Files</h2>
         <p>
-            <a href="view.php">View Images</a>
+            <a href="Administrator.php">Profile</a>
         </p>
         <p>
         <form>

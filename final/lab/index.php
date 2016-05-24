@@ -18,9 +18,10 @@ and open the template in the editor.
    
          
              
-        include './DirectoryIterator.php';
+        include './indexRandomMeme.php';
+         include './Memes.php';
             
-            include './templates/messages.html.php';   
+          //  include './templates/messages.html.php';   
         ?>
 
 <br/>

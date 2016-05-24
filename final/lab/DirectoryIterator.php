@@ -39,7 +39,7 @@
         ?> <?php
          if($_SESSION['user'] != null || $_SESSION['user'] != '')
          {      
-             for ($i = 0; $i < sizeof($values)-1; $i++) : ?>        
+             for ($i = 0; $i <= sizeof($values)-1; $i++) : ?>        
         
                 <h2><?php echo $values[$i]['title']; ?></h2>
                 <p>uploaded on <?php echo  $values[$i]['created']; ?></p>
@@ -55,34 +55,7 @@
                    <img src="./uploads/<?php echo $values[$i]['filename']?>" class = 'img-rounded' width='100' height='100'/> 
                  
                        <?php endfor;}
-                       else 
-                       {
-                            foreach ($directory as $fileInfo) : ?>        
-            <?php if ( $fileInfo->isFile() ) : ?>
-                <h2><?php echo $fileInfo->getFilename(); ?></h2>
-                <p>uploaded on <?php echo date("l F j, Y, g:i a", $fileInfo->getMTime()); ?></p>
-                <p>This file is <?php echo $fileInfo->getSize(); ?> byte's</p>
-                <p> This is a <?php echo $fileInfo->getExtension();?> file type</p>
-            
-                <?php if( $fileInfo->getExtension() =='jpg' || $fileInfo->getExtension() =='png' || $fileInfo->getExtension() =='gif' ):?>
-                
-                   <img src="<?php echo $fileInfo->getPathname();?>" class = 'img-rounded' width='100' height='100'/> 
-               
-             <?php endif;?>
-             <?php if( $fileInfo->getExtension() =='pdf' ):?>
-                <embed src=" <?php echo $fileInfo->getPathname()?>"width='300' height='300'></embed>
-              
-               
-             <?php endif;?>
-                  <?php if( $fileInfo->getExtension() =='txt'):?>
-                <textarea rows='30' columns='20'><?php echo file_get_contents($fileInfo->getPathname());?></textarea> 
-            <?php endif;?>
-                <?php if( $fileInfo->getExtension() =='docx'||$fileInfo->getExtension() =='html'||$fileInfo->getExtension() =='xls'||$fileInfo->getExtension() =='xlsx'||$fileInfo->getExtension() =='doc'):?>
-                <a href='<?php echo $fileInfo->getPathname();?>'download>Download</a>
-            <?php endif;?> 
-              <?php endif;?>
-                       <?php endforeach; 
-                       }
+   
 ?>
                 
         
