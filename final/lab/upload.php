@@ -2,7 +2,8 @@
 
 header("Access-Control-Allow-Orgin: *");
 header("Content-Type: application/json; charset=utf8");
-
+  include('./autoload.php');  
+   $db = new DBSpring();
 $status_codes = array(
     200 => 'OK',
     500 => 'Internal Server Error',
@@ -194,8 +195,16 @@ try {
       }
 
      */
-
+    
+        $title = $memetop . " " . $memebottom;
+        $userID = filter_input(INPUT_POST, 'id');
     $message = 'File is uploaded successfully.';
+    $fileNameNew = $fileName . '.' . $ext;
+    //$db-> createImage($userID, $fileNameNew, $title );
+    if(!$db-> createImage($userID, $fileNameNew, $title ))
+    {
+        throw new RuntimeException('did not submit to db');
+    }
 } catch (RuntimeException $e) {
 
     $message = $e->getMessage();

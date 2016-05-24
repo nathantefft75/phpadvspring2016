@@ -29,6 +29,14 @@
         </style>
     </head>
     <body>
+        <?php 
+        session_start();
+       
+                if($_SESSION['user'] == null || $_SESSION['user'] == '')
+        {
+             header('Location: index.php');
+          
+        }?>
         <h2>Image Files</h2>
         <p>
             <a href="view.php">View Images</a>
@@ -207,7 +215,7 @@
             formData.append('upfile', data);
             formData.append(memeTopText.name, memeTopText.value);
             formData.append(memeBottomText.name, memeBottomText.value);
-
+           formData.append('id', '<?php echo $_SESSION['user']; ?>');
             xmlhttp.open(verb, url, true);
             xmlhttp.send(formData);
 

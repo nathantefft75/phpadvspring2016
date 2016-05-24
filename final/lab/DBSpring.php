@@ -57,7 +57,26 @@ class DBSpring extends DB {
                 }
                 return false;
    }
+     function createImage($user_id, $filename, $title )
+   {
    
+          
+      
+        $db = $this->getDb();
+        $stmt = $db->prepare("INSERT INTO photos ( user_id, filename, title, created) VALUES ( :user_id, :filename, :title, now())");
+        $bind = array(
+           
+             ":user_id"=> $user_id,
+             ":filename"=> $filename,
+            ":title"=>$title
+            
+          
+                 );
+            if ($stmt->execute($bind) && $stmt->rowCount() > 0) {
+                         return true;
+                }
+                return false;
+   }
   
     function read($id)
     {
@@ -73,8 +92,37 @@ class DBSpring extends DB {
         
     }
    
-    function delete($id)
+    function delete($filename)
     {
-        
+              $db = $this->getDb();
+        $stmt = $db->prepare("DELETE FROM photos WHERE filename = :filename");
+        $bind = array(
+           
+           
+             ":filename"=> $filename
+          
+            
+          
+                 );
+            if ($stmt->execute($bind) && $stmt->rowCount() > 0) {
+                         return true;
+                }
+                return false;
+    }
+    function pullUserImages($user_id)
+    {
+            $db = $this->getDb();
+        $stmt = $db->prepare("select * from photos WHERE user_id = :user_id");
+        $bind = array(
+           
+             ":user_id"=> $user_id
+          
+         
+                 );
+         $userInfo = array();
+            if ($stmt->execute($bind) && $stmt->rowCount() > 0) {
+                        $userInfo = $stmt->fetchall(PDO::FETCH_ASSOC);
+                }
+                return  $userInfo;
     }
 }

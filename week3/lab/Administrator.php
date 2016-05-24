@@ -11,9 +11,10 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        session_start();
              include('./autoload.php'); 
            $db = new DBSpring();
-        if($_SESSION['user'] != null || $_SESSION['user'] != '')
+        if($_SESSION['user'] == null || $_SESSION['user'] == '')
         {
              header('Location: index.php');
         }
@@ -24,7 +25,7 @@ and open the template in the editor.
                  header('Location: index.php');
        }
         ?>
-        <h1>yay admin</h1>
+        
               <form action="#" method="post">
       
         <input type="submit" value="logout" class="btn btn-danger" />

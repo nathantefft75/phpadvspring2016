@@ -15,7 +15,7 @@ and open the template in the editor.
     <body>
         <?php
            include('./autoload.php');     
-           $db = new DBSpring();
+   
          
              
         include './DirectoryIterator.php';

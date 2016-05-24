@@ -14,6 +14,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        session_start();
            include('./autoload.php');     
            $db = new DBSpring();
          
@@ -25,13 +26,14 @@ and open the template in the editor.
            $thePassword = $actualUser[0]['password'];
            if(password_verify($password, $thePassword))
            {
-               $_SESSION['user'] = $email;
+               $_SESSION['user'] = $actualUser[0]['user_id'];
                header('Location: Administrator.php');
-           
+             
            }
            else
            {
-               $errors[] = 'not right';
+        
+               $errors[] = $actualUser[0]['password'] . 'test';
            }
        }
    

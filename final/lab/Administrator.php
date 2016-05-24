@@ -11,23 +11,30 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+       session_start();
+          //var_dump($_SESSION['user']);
              include('./autoload.php'); 
            $db = new DBSpring();
-        if($_SESSION['user'] != null || $_SESSION['user'] != '')
+        if($_SESSION['user'] == null || $_SESSION['user'] == '')
         {
              header('Location: index.php');
         }
-            if($db->isPostRequest())
-       {
-                session_destroy();
+        else
+        {
+              include './DirectoryIterator.php';
+        }
+        if (array_key_exists('logout', $_POST)){
+       
             
-                 header('Location: index.php');
-       }
+             session_destroy();
+             header('Location: index.php');
+        }
+     
         ?>
-        <h1>yay admin</h1>
+ 
               <form action="#" method="post">
       
-        <input type="submit" value="logout" class="btn btn-danger" />
+        <input type="submit" value="logout" name="logout" class="btn btn-danger" />
         </form>
         <a href="generatorView.php">Create New Meme</a> 
     </body>
